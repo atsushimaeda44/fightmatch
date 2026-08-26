@@ -1,17 +1,16 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
+from purpose.router import router as purpose_router
 
 app = FastAPI()
 
-@app.get("/")
-def read_root():
-    return {"message": "Hello, World!"}
-
-from fastapi.middleware.cors import CORSMiddleware
-
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Flutter Webからのアクセスを許可
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+app.include_router(purpose_router)
