@@ -1,5 +1,10 @@
-venv
-__pycache__
+# OS
+.DS_Store
+
+# Python
+venv/
+.venv/
+__pycache__/
 *.pyc
 
 # backend専用
@@ -8,5 +13,15 @@ __pycache__
 
 /backend/migrations/
 
-# frontend専用
-/frontend/node_modules/
+# Node / Vue
+node_modules/
+dist/
+coverage/
+*.tsbuildinfo
+
+# Flutter
+.metadata
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+build/
