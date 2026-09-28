@@ -1,0 +1,20 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: fightmatch
+      POSTGRES_USER: fightmatch
+      POSTGRES_PASSWORD: fightmatch
+    ports:
+      - "5432:5432"
+    volumes:
+      - fightmatch-postgres-data:/var/lib/postgresql/data
+      - ./backend/db/init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U fightmatch -d fightmatch"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  fightmatch-postgres-data:
